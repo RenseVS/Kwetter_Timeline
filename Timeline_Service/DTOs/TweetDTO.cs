@@ -1,0 +1,12 @@
+﻿using System;
+namespace Timeline_Service.DTOs
+{
+	public class TweetDTO
+	{
+        public string TweetID { get; set; }
+        public string UserName { get; set; }
+        public string Message { get; set; }
+        public DateTime TweetDate { get; set; }
+    }
+}
+
