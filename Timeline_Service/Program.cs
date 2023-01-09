@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(x => ConnectionMultiplexer.Connect(builder.Configuration.GetValue<string>("RedisConnection")));
-builder.Services.AddSingleton<RedisService>();
+builder.Services.AddSingleton<IRedisService, RedisService>();
 builder.Services.AddScoped<TimelineService>();
 
 builder.Services.AddAuthentication(options =>
@@ -77,3 +77,4 @@ app.MapControllers();
 
 app.Run();
 
+public partial class Program { }

@@ -1,0 +1,52 @@
+﻿<Properties StartupConfiguration="{407CEAA5-5C52-4406-8A71-7DDCECC553DA}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service.Test/IntegrationTests.cs" relfile="Timeline_Service.Test/IntegrationTests.cs" line="72" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Timeline_Service/Controllers/TimelineController.cs">
+    <Files>
+      <File FileName="Timeline_Service/MessageContracts/TweetDeleted.cs" />
+      <File FileName="Timeline_Service/MessageContracts/UserStoppedFollowing.cs" />
+      <File FileName="Timeline_Service/MessageContracts/UserCreated.cs" />
+      <File FileName="Timeline_Service/Services/Consumers/UserCreatedConsumer.cs" />
+      <File FileName="Timeline_Service/Services/Consumers/TweetMadeWithFollowersConsumer.cs" />
+      <File FileName="Timeline_Service/Services/RedisService.cs" />
+      <File FileName="Timeline_Service/Services/TimelineService.cs" />
+      <File FileName="Timeline_Service/Controllers/TimelineController.cs" Line="34" Column="73" />
+      <File FileName="Timeline_Service/MapperProfiles/MapperProfile.cs" />
+      <File FileName="Timeline_Service/DTOs/TweetDTO.cs" />
+      <File FileName="Timeline_Service.Test/IntegrationTests.cs" />
+      <File FileName="Timeline_Service/Program.cs" />
+      <File FileName="Timeline_Service/appsettings.json" />
+      <File FileName="Timeline_Service.Test/Usings.cs" />
+      <File FileName="Timeline_Service/Services/IRedisService.cs" />
+      <File FileName="Timeline_Service.Test/RedisServiceMock.cs" />
+      <File FileName="Timeline_Service/Entities/Tweet.cs" />
+      <File FileName=".dockerignore" />
+      <File FileName="docker-compose.yml" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Timeline_Service" expanded="True">
+            <Node name="Solution Items" expanded="True" />
+            <Node name="Timeline_Service" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DTOs" expanded="True" />
+              <Node name="Entities" expanded="True" />
+              <Node name="MapperProfiles" expanded="True" />
+              <Node name="MessageContracts" expanded="True" />
+            </Node>
+            <Node name="Timeline_Service.Test" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Timeline__Service PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+</Properties>

@@ -24,47 +24,19 @@ namespace Timeline_Service.Controllers
             _timelineService = timelineService;
         }
 
-        [Route("{UserID}")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<TweetDTO>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<TweetDTO>>> GetTimeline([FromRoute] string UserID)
+        public async Task<ActionResult<IEnumerable<TweetDTO>>> GetTimeline()
         {
             try
             {
                 string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-                if (UserID != userId) {
-                    return Unauthorized();
-                }
-                var result = await _timelineService.GetTimeline(UserID);
+                var result = await _timelineService.GetTimeline(userId);
                 if (result == null)
                 {
                     return NotFound();
                 }
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        [Route("test/{UserID}")]
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<TweetDTO>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<TweetDTO>>> UpdateTimeline([FromRoute] string UserID)
-        {
-            try
-            {
-                var tweet = new TweetDTO()
-                {
-                    TweetID = "1",
-                    UserName = "Rense",
-                    Message = "Het is woensdag mijn kamaraden",
-                    TweetDate = new DateTime(1998, 4, 1)
-
-                };
-                await _timelineService.UpdateTimeline(UserID, tweet);
-                return Ok(tweet);
             }
             catch (Exception ex)
             {

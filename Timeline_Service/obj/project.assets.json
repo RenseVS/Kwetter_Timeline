@@ -1893,11 +1893,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rensevanstiphout/Local_Git/Timeline_Service/Timeline_Service/Timeline_Service.csproj",
+      "projectUniqueName": "/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/Timeline_Service.csproj",
       "projectName": "Timeline_Service",
-      "projectPath": "/Users/rensevanstiphout/Local_Git/Timeline_Service/Timeline_Service/Timeline_Service.csproj",
+      "projectPath": "/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/Timeline_Service.csproj",
       "packagesPath": "/Users/rensevanstiphout/.nuget/packages/",
-      "outputPath": "/Users/rensevanstiphout/Local_Git/Timeline_Service/Timeline_Service/obj/",
+      "outputPath": "/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

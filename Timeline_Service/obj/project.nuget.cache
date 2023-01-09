@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dM/CbHbi73Za2ZkOEGwuUEI5pskCWXNAKsRYAYVPadCFisD/G20i1TegkiA5ovrUIs7PbLZqkyMr+pv3fwSMRQ==",
+  "dgSpecHash": "lZDYmYkXKbA5/Es85n+NpyHxURl0OcmIzSsNvH3IuKvlEbpeLn0xclJBf4OIFlpf8RGNt2HmMSEfBIXaQzJlsQ==",
   "success": true,
-  "projectFilePath": "/Users/rensevanstiphout/Local_Git/Timeline_Service/Timeline_Service/Timeline_Service.csproj",
+  "projectFilePath": "/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/Timeline_Service.csproj",
   "expectedPackageFiles": [
     "/Users/rensevanstiphout/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
     "/Users/rensevanstiphout/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
