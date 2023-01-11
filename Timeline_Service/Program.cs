@@ -19,6 +19,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddSingleton<IConnectionMultiplexer>(x => ConnectionMultiplexer.Connect(builder.Configuration.GetValue<string>("RedisConnection")));
 builder.Services.AddSingleton<IRedisService, RedisService>();
 builder.Services.AddScoped<TimelineService>();
+builder.Services.AddScoped<CelebertyService>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -51,7 +52,7 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
-builder.Services.AddAuthorization(o =>
+/*builder.Services.AddAuthorization(o =>
 {
     o.FallbackPolicy = new AuthorizationPolicyBuilder()
     .RequireAuthenticatedUser()
@@ -59,7 +60,7 @@ builder.Services.AddAuthorization(o =>
 
     o.AddPolicy("moderator", policy =>
       policy.RequireClaim("permissions", "moderator"));
-});
+});*/
 
 var app = builder.Build();
 

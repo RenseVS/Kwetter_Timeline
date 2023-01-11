@@ -13,7 +13,7 @@ using Timeline_Service.Services;
 
 namespace Timeline_Service.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class TimelineController : Controller
@@ -44,13 +44,25 @@ namespace Timeline_Service.Controllers
             }
         }
 
-        [Authorize("moderator")]
-        [Route("test/moderator")]
+        //[Authorize("moderator")]
+        [Route("test/moderator/{userid}")]
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> UpdateTimeline()
+        public async Task<ActionResult> UpdateTimeline(string userid)
         {
-            return Ok("Yaaaaay");
+            try
+            {
+                var result = await _timelineService.GetTimeline(userid);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

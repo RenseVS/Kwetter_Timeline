@@ -14,15 +14,16 @@ namespace Timeline_Service.Services
 	{
 		private readonly IMapper _mapper;
 		private readonly IRedisService _redisService;
-		public TimelineService(IMapper mapper, IRedisService redisService)
+        private readonly CelebertyService _celebertyService;
+		public TimelineService(IMapper mapper, IRedisService redisService, CelebertyService celebertyService)
 		{
 			_mapper = mapper;
-			_redisService = redisService; 
+			_redisService = redisService;
+            _celebertyService = celebertyService;
 		}
 
 		public async Task<IEnumerable<TweetDTO>> GetTimeline(string userid)
 		{
-			var cachedvalue = await _redisService.GetSortedListCacheValueAsync(userid);
 			IEnumerable<Tweet> timeline;
             try
 			{
@@ -59,7 +60,45 @@ namespace Timeline_Service.Services
 
         public async Task<IEnumerable<Tweet>> GetTimelineFromCache(string userid) {
             var cachedvalue = await _redisService.GetSortedListCacheValueAsync(userid);
-            return cachedvalue.Select(x => JsonSerializer.Deserialize<Tweet>(x)).ToList();
+            TimeSpan ts;
+            try
+            {
+                string lastCelebCheck = await _redisService.GetCacheValueAsync("Date" + userid);
+                ts = DateTime.Now - DateTime.Parse(lastCelebCheck);
+            }
+            catch {
+                ts = DateTime.Now - new DateTime(1900);
+            }
+            
+            if (ts.TotalMinutes > 5)
+            {
+                var tweetlist = cachedvalue.Select(x => JsonSerializer.Deserialize<Tweet>(x)).ToList();
+                var celebtimeline = await _celebertyService.GetCelebTweets(userid);
+                UpdateTimelineWithCelebs(userid, celebtimeline);
+
+                tweetlist = tweetlist.Concat(celebtimeline).ToList();
+                var longlist =  tweetlist.OrderBy(x => x.TweetDate).ToList();
+                await _redisService.SetCacheValueAsync("Date" + userid, DateTime.Now.ToString());
+                if (longlist.Count > 10)
+                {
+                    longlist.RemoveRange(10, longlist.Count());
+                    return longlist;
+                }
+                else {
+                    return longlist;
+                }
+            }
+            else {
+                return cachedvalue.Select(x => JsonSerializer.Deserialize<Tweet>(x)).ToList();
+            }
+        }
+
+        public async Task UpdateTimelineWithCelebs(string userid, IEnumerable<Tweet> tweets)
+        {
+            foreach (Tweet tweet in tweets) {
+                string jsonString = JsonSerializer.Serialize(tweet);
+                await _redisService.SetSortedListCacheValueAsync(userid, jsonString, tweet.TweetDate.Ticks);
+            }
         }
 
         public async Task<IEnumerable<Tweet>> GetTimelineFromDatabase(string userid)
@@ -72,6 +111,16 @@ namespace Timeline_Service.Services
                 TweetDate = new DateTime(1998, 4, 1)
 
             };
+
+            TweetDTO tweetDTO = new TweetDTO()
+            {
+                TweetID = "0",
+                UserName = "Kwetter inc.",
+                Message = "Welcome to Kwetter, When you start following more people your timeline will fill up with interesting messages. PS, im a teapot",
+                TweetDate = new DateTime(1998, 4, 1)
+
+            };
+            UpdateTimeline(userid, tweetDTO);
             return new List<Tweet>() { tweet };
         }
     }

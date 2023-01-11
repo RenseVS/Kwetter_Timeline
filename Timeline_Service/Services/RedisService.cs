@@ -27,6 +27,7 @@ namespace Timeline_Service.Services
         public async Task SetSortedListCacheValueAsync(string key, string value, long seconds)
         {
             var db = _connectionMultiplexer.GetDatabase();
+            await db.SortedSetRemoveRangeByRankAsync(key, 10, 9999);
             await db.SortedSetAddAsync(key, value, seconds);
         }
 
