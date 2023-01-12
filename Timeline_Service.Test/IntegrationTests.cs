@@ -8,6 +8,9 @@ using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using System.Net;
 using System.Net.Http.Headers;
+using Timeline_Service.Entities;
+using Timeline_Service.DTOs;
+using System.Text.Json;
 
 namespace Timeline_Service.Test
 {
@@ -25,7 +28,7 @@ namespace Timeline_Service.Test
                 {
                     builder.ConfigureServices(services =>
                     {
-                        services.AddSingleton<IRedisService, RedisService>();
+                        services.AddSingleton<IRedisService, RedisServiceMock>();
                     });
                 });
 
@@ -36,46 +39,45 @@ namespace Timeline_Service.Test
             audience = "https://KwetterNet.com";
         }
 
-        private async Task<string> GetAccessToken()
-        {
-            AuthenticationApiClient auth0Client =
-            new AuthenticationApiClient(new Uri(domain));
-            var tokenRequest = new ClientCredentialsTokenRequest()
-            {
-                ClientId = "6Zm6rIE8NOF8jAycBPUWaeIjdnczth0E",
-                ClientSecret = "0Z8OKpqvk4c6GLNnhcbI6eUzyiAhZCfP4HV5LWsrc84x-IyYW664SqbD_8Lf9pun",
-                Audience = audience
-            };
-            var tokenResponse = await auth0Client.GetTokenAsync(tokenRequest);
-
-            return tokenResponse.AccessToken;
-        }
-
-        [Theory]
-        [InlineData("/")]
-        [InlineData("/test/moderator")]
-        public async Task Unauthorized(string url)
+        [Fact]
+        public async Task TimelineWithCelebUpdate()
         {
             // Act
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/v1/timeline" + url);
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/v1/timeline/test/moderator/1");
             var response = await httpClient.SendAsync(request);
-
+            var body = await response.Content.ReadAsStringAsync();
+            List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
             // Assert
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(2, tweets.Count());
         }
 
-        [Theory]
-        [InlineData("/")]
-        public async Task getTimeline(string url)
+        [Fact]
+        public async Task TimelineWithoutCelebUpdate()
         {
             // Act
-            var accessToken = await GetAccessToken();
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/v1/timeline" + url);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/v1/timeline/test/moderator/2");
             var response = await httpClient.SendAsync(request);
-
+            var body = await response.Content.ReadAsStringAsync();
+            List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
             // Assert
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Single(tweets);
+        }
+
+        [Fact]
+        public async Task TimelineFromRegularDB()
+        {
+            // Act
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/v1/timeline/test/moderator/3");
+            var response = await httpClient.SendAsync(request);
+            var body = await response.Content.ReadAsStringAsync();
+            List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Single(tweets);
+            Assert.Equal("0", tweets[0].tweetID);
+
         }
     }
 }

@@ -16,10 +16,10 @@ namespace Timeline_Service.Services
             //make api call to get celeberty's usertimeline since this contains their most recent tweets
 			Tweet tweet = new Tweet()
             {
-                TweetID = "0",
-                UserName = "Kwetter inc.",
-                Message = "This is a celeberty tweet made on" + DateTime.Now.ToString(),
-                TweetDate = DateTime.Now
+                tweetID = "0",
+                userName = "Kwetter inc.",
+                message = "This is a celeberty tweet made on" + DateTime.Now.ToString(),
+                tweetDate = DateTime.Now
 
             };
             return new List<Tweet>() { tweet };

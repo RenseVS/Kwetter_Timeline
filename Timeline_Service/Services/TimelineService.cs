@@ -33,13 +33,13 @@ namespace Timeline_Service.Services
 
                 timeline = await GetTimelineFromDatabase(userid);
             }
-            return _mapper.Map<IEnumerable<Tweet>, IEnumerable<TweetDTO>>(timeline).OrderByDescending(tweet => tweet.TweetDate).ToList();
+            return _mapper.Map<IEnumerable<Tweet>, IEnumerable<TweetDTO>>(timeline).OrderByDescending(tweet => tweet.tweetDate).ToList();
         }
 
         public async Task UpdateTimeline(string userid, TweetDTO tweet)
         {
             string jsonString = JsonSerializer.Serialize(_mapper.Map<TweetDTO, Tweet>(tweet));
-            await _redisService.SetSortedListCacheValueAsync(userid, jsonString, tweet.TweetDate.Ticks);
+            await _redisService.SetSortedListCacheValueAsync(userid, jsonString, tweet.tweetDate.Ticks);
         }
 
 		//public async Task<IEnumerable<Tweet>> CreateNewTimelineForUser(string userid) {
@@ -77,7 +77,7 @@ namespace Timeline_Service.Services
                 UpdateTimelineWithCelebs(userid, celebtimeline);
 
                 tweetlist = tweetlist.Concat(celebtimeline).ToList();
-                var longlist =  tweetlist.OrderBy(x => x.TweetDate).ToList();
+                var longlist =  tweetlist.OrderBy(x => x.tweetDate).ToList();
                 await _redisService.SetCacheValueAsync("Date" + userid, DateTime.Now.ToString());
                 if (longlist.Count > 10)
                 {
@@ -97,7 +97,7 @@ namespace Timeline_Service.Services
         {
             foreach (Tweet tweet in tweets) {
                 string jsonString = JsonSerializer.Serialize(tweet);
-                await _redisService.SetSortedListCacheValueAsync(userid, jsonString, tweet.TweetDate.Ticks);
+                await _redisService.SetSortedListCacheValueAsync(userid, jsonString, tweet.tweetDate.Ticks);
             }
         }
 
@@ -105,19 +105,19 @@ namespace Timeline_Service.Services
         {
             Tweet tweet = new Tweet()
             {
-                TweetID = "0",
-                UserName = "Kwetter inc.",
-                Message = "Welcome to Kwetter, When you start following more people your timeline will fill up with interesting messages. PS, im a teapot",
-                TweetDate = new DateTime(1998, 4, 1)
+                tweetID = "0",
+                userName = "Kwetter inc.",
+                message = "Welcome to Kwetter, When you start following more people your timeline will fill up with interesting messages. PS, im a teapot",
+                tweetDate = new DateTime(1998, 4, 1)
 
             };
 
             TweetDTO tweetDTO = new TweetDTO()
             {
-                TweetID = "0",
-                UserName = "Kwetter inc.",
-                Message = "Welcome to Kwetter, When you start following more people your timeline will fill up with interesting messages. PS, im a teapot",
-                TweetDate = new DateTime(1998, 4, 1)
+                tweetID = "0",
+                userName = "Kwetter inc.",
+                message = "Welcome to Kwetter, When you start following more people your timeline will fill up with interesting messages. PS, im a teapot",
+                tweetDate = new DateTime(1998, 4, 1)
 
             };
             UpdateTimeline(userid, tweetDTO);
