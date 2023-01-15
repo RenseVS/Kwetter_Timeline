@@ -1,10 +1,13 @@
 ﻿<Properties StartupConfiguration="{0F885811-0CE0-48B1-9B12-EB4D948ED084}|Default">
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Timeline__Service PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.Timeline__Service PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Timeline_Service/appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Timeline_Service/Services/TimelineService.cs">
     <Files>
       <File FileName="Timeline_Service/MessageContracts/TweetDeleted.cs" />
       <File FileName="Timeline_Service/MessageContracts/UserStoppedFollowing.cs" />
@@ -12,16 +15,15 @@
       <File FileName="Timeline_Service/Services/Consumers/UserCreatedConsumer.cs" />
       <File FileName="Timeline_Service/Services/Consumers/TweetMadeWithFollowersConsumer.cs" />
       <File FileName="Timeline_Service/Services/RedisService.cs" />
-      <File FileName="Timeline_Service/Services/TimelineService.cs" Line="73" Column="1" />
+      <File FileName="Timeline_Service/Services/TimelineService.cs" Line="85" Column="33" />
       <File FileName="Timeline_Service/Controllers/TimelineController.cs" />
       <File FileName="Timeline_Service/MapperProfiles/MapperProfile.cs" />
       <File FileName="Timeline_Service/DTOs/TweetDTO.cs" />
-      <File FileName="Timeline_Service.Test/IntegrationTests.cs" />
-      <File FileName="Timeline_Service/Program.cs" Line="1" Column="1" />
-      <File FileName="Timeline_Service/appsettings.json" Line="2" Column="20" />
+      <File FileName="Timeline_Service.Test/IntegrationTests.cs" Line="33" Column="20" />
+      <File FileName="Timeline_Service/Program.cs" Line="19" Column="1" />
+      <File FileName="Timeline_Service/appsettings.json" />
       <File FileName="Timeline_Service.Test/Usings.cs" />
-      <File FileName="Timeline_Service/Services/IRedisService.cs" />
-      <File FileName="Timeline_Service.Test/RedisServiceMock.cs" />
+      <File FileName="Timeline_Service.Test/RedisServiceMock.cs" Line="19" Column="55" />
       <File FileName="Timeline_Service/Entities/Tweet.cs" />
       <File FileName=".dockerignore" />
       <File FileName="docker-compose.yml" />
@@ -38,8 +40,10 @@
               <Node name="Entities" expanded="True" />
               <Node name="MapperProfiles" expanded="True" />
               <Node name="MessageContracts" expanded="True" />
-              <Node name="Services" expanded="True" />
-              <Node name="appsettings.json" selected="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Consumers" expanded="True" />
+                <Node name="TimelineService.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Timeline_Service.Test" expanded="True" />
           </Node>
@@ -47,9 +51,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service.Test/IntegrationTests.cs" relfile="Timeline_Service.Test/IntegrationTests.cs" line="72" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

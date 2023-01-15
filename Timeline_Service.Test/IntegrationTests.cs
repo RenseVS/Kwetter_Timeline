@@ -39,6 +39,10 @@ namespace Timeline_Service.Test
             audience = "https://KwetterNet.com";
         }
 
+        /// <summary>
+        /// User 1 has been setup to retrieve his own timline from the cache and merge that with new celeberty tweets since it has been over 5 minutes since that happpened
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task TimelineWithCelebUpdate()
         {
@@ -49,9 +53,14 @@ namespace Timeline_Service.Test
             List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            //The assert means that it is succesfull in merging the timeline with the celeberty tweets since it is set up with 1 item in the cache and 1 new celeberty tweet
             Assert.Equal(2, tweets.Count());
         }
 
+        /// <summary>
+        /// User 2 has been setup to retrieve his own timline from the cache and not merge that with new celeberty tweets since it hasn't been over 5 minutes since that happpened
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task TimelineWithoutCelebUpdate()
         {
@@ -62,9 +71,14 @@ namespace Timeline_Service.Test
             List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            //The assert means that it is succesfull and that it hasnt merged the timeline with the celeberty tweets since it is set up with 1 item in the cache and 1 new celeberty tweet
             Assert.Single(tweets);
         }
 
+        /// <summary>
+        /// User 3 has been set up to retrieve his timeline from the database wich has 1 item with id 0
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task TimelineFromRegularDB()
         {
@@ -75,7 +89,9 @@ namespace Timeline_Service.Test
             List<TweetDTO> tweets = JsonSerializer.Deserialize<List<TweetDTO>>(body);
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            //The assert means that it is succesfull and that it hasnt merged the timeline with the celeberty tweets since it is set up with 1 item in the cache and 1 new celeberty tweet
             Assert.Single(tweets);
+            //The assert means that it is succesfull since the db tweet that is setup has an id of 0;
             Assert.Equal("0", tweets[0].tweetID);
 
         }
