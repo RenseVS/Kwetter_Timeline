@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using Serilog;
 using StackExchange.Redis;
 using Timeline_Service.Services;
 using Timeline_Service.Services.Consumers;
@@ -51,6 +52,10 @@ builder.Services.AddMassTransit(x =>
         });
     });
 });
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .WriteTo.Console()
+    .WriteTo.Seq("http://localhost:5341"));
 
 /*builder.Services.AddAuthorization(o =>
 {

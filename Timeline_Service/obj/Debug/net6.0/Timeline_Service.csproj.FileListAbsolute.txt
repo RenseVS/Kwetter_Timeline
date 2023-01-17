@@ -94,3 +94,15 @@
 /Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/obj/Debug/net6.0/Timeline_Service.pdb
 /Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/obj/Debug/net6.0/Timeline_Service.genruntimeconfig.cache
 /Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/obj/Debug/net6.0/ref/Timeline_Service.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.AspNetCore.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Extensions.Hosting.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Extensions.Logging.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Formatting.Compact.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Settings.Configuration.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Sinks.Console.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Sinks.Debug.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Sinks.File.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Sinks.PeriodicBatching.dll
+/Users/rensevanstiphout/Local_Git/Kwetter_Timeline/Timeline_Service/bin/Debug/net6.0/Serilog.Sinks.Seq.dll
